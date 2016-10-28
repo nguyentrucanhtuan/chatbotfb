@@ -11,7 +11,7 @@ var http = require('http');
 // Listen on port 8080 on localhost
 var port = process.env.PORT || 8080;
 
-http.createServer(function(request, response) {
+http.get("/",function(request, response) {
   response.simpleText(200, "Hello World!");
 }).listen(port); // Activates this server, listening on port 8080.
 
