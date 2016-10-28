@@ -11,5 +11,8 @@
     "heroku"
   ],
   "author": "jane-doe",
+  "dependencies": {
+    "node-router": "1.0"
+  },
   "license": "MIT"
 }
