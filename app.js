@@ -145,7 +145,7 @@ function sendVideo(sender) {
 	})
 }
 
-function menuFix(){
+function menuFix(sender){
 	/*
 	{
 		"setting_type" : "call_to_actions",
@@ -181,6 +181,7 @@ function menuFix(){
 		qs: {access_token:token},
 		method: 'POST',
 		json: {
+			recipient: {id:sender},
 			setting_type : "call_to_actions",
 			thread_state : "existing_thread",
 			call_to_actions:[
@@ -197,14 +198,14 @@ function menuFix(){
 				{
 					type:"web_url",
 					title:"Checkout",
-					url:"http://petersapparel.parseapp.com/checkout",
+					url:"http://nguyenlieuphache.com.vn/",
 					webview_height_ratio: "full",
 					messenger_extensions: true
 				},
 				{
 					type:"web_url",
 					title:"View Website",
-					url:"http://petersapparel.parseapp.com/"
+					url:"http://nguyenlieuphache.com/"
 				}
 			]
 		}
