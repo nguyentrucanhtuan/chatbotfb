@@ -41,7 +41,8 @@ app.get('/webhook/', function (req, res) {
 // to post data
 app.post('/webhook/', function (req, res) {
 
-	addPersistentMenu()
+	addGreeting();
+	addPersistentMenu();
 
 	let messaging_events = req.body.entry[0].messaging
 	for (let i = 0; i < messaging_events.length; i++) {
@@ -172,6 +173,28 @@ function addPersistentMenu(){
 					payload:"SHARE"
 				}
 			]
+		}
+	}, function(error, response, body) {
+		console.log(response)
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
+function addGreeting(){
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/thread_settings',
+		qs: {access_token:token},
+		method: 'POST',
+		json:{
+			setting_type: "greeting",
+			greeting: {
+				text: "Xin chào bạn đã đến với trang cung cấp nguyên liệu pha chế TNT, Tôi sẽ giúp bạn tìm thấy thứ bạn cần và hãy bắt đầu mua sắm nào!!!"
+			}
+			
 		}
 	}, function(error, response, body) {
 		console.log(response)
