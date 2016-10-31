@@ -177,9 +177,9 @@ function menuFix(sender){
 	}*/
 
 	let messageData = {
-			setting_type : "call_to_actions",
-			thread_state : "existing_thread",
-			call_to_actions:[
+			"setting_type" : "call_to_actions",
+			"thread_state" : "existing_thread",
+			"call_to_actions":[
 				{
 					type:"postback",
 					title:"Help",
