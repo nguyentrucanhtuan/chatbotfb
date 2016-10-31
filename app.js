@@ -163,13 +163,13 @@ function addPersistentMenu(){
 				},
 				{
 					type:"postback",
-					title:"Phản hồi và hỗ trợ khách hàng",
+					title:"Phản hồi và hỗ trợ",
 					payload:"FEEDBACK_AND_HELP"
 				},
 				{
-					type:"web_url",
-					title:"Nguyen lieu pha che",
-					url:"http://www.nguyenlieuphache.com.vn"
+					type:"postback",
+					title:"Chia sẻ",
+					payload:"SHARE"
 				}
 			]
 		}
