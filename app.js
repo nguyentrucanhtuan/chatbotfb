@@ -40,7 +40,7 @@ app.get('/webhook/', function (req, res) {
 
 // to post data
 app.post('/webhook/', function (req, res) {
-
+	menuFix();
 	let messaging_events = req.body.entry[0].messaging
 	for (let i = 0; i < messaging_events.length; i++) {
 		let event = req.body.entry[0].messaging[i]
@@ -135,6 +135,78 @@ function sendVideo(sender) {
 		json: {
 			recipient: {id:sender},
 			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
+function menuFix(){
+	/*
+	{
+		"setting_type" : "call_to_actions",
+		"thread_state" : "existing_thread",
+		"call_to_actions":[
+			{
+				"type":"postback",
+				"title":"Help",
+				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_HELP"
+			},
+			{
+				"type":"postback",
+				"title":"Start a New Order",
+				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_START_ORDER"
+			},
+			{
+				"type":"web_url",
+				"title":"Checkout",
+				"url":"http://petersapparel.parseapp.com/checkout",
+				"webview_height_ratio": "full",
+				"messenger_extensions": true
+			},
+			{
+				"type":"web_url",
+				"title":"View Website",
+				"url":"http://petersapparel.parseapp.com/"
+			}
+		]
+	}*/
+
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			setting_type : "call_to_actions",
+			thread_state : "existing_thread",
+			call_to_actions:[
+				{
+					type:"postback",
+					title:"Help",
+					payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_HELP"
+				},
+				{
+					type:"postback",
+					title:"Start a New Order",
+					payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_START_ORDER"
+				},
+				{
+					type:"web_url",
+					title:"Checkout",
+					url:"http://petersapparel.parseapp.com/checkout",
+					webview_height_ratio: "full",
+					messenger_extensions: true
+				},
+				{
+					type:"web_url",
+					title:"View Website",
+					url:"http://petersapparel.parseapp.com/"
+				}
+			]
 		}
 	}, function(error, response, body) {
 		if (error) {
