@@ -40,7 +40,7 @@ app.get('/webhook/', function (req, res) {
 
 // to post data
 app.post('/webhook/', function (req, res) {
-	sendGreeting();
+
 	let messaging_events = req.body.entry[0].messaging
 	for (let i = 0; i < messaging_events.length; i++) {
 		let event = req.body.entry[0].messaging[i]
@@ -50,6 +50,9 @@ app.post('/webhook/', function (req, res) {
 			if (text === 'Generic') {
 				sendGenericMessage(sender)
 				continue
+			}
+			if (text === 'Image') {
+				sendImage(sender)
 			}
 			sendTextMessage(sender, "Bạn vừa nói là: " + text.substring(0, 200))
 		}
@@ -67,26 +70,6 @@ app.post('/webhook/', function (req, res) {
 // const token = process.env.PAGE_ACCESS_TOKEN
 const token = "EAAHwsu50wLoBAPsGNwYnC3XLRZBja7HVFEh9jZAbZBZA34ZAQg5rMxA8kfACA2GbgwpJKA0M45obaRFFPHIcDaG01VQxS0Ssk0UvBYbfpDPASt9izjJmhxQ4TT8awmNPKL33mgq0a0ienhwW0fpKDysPigqGaK8gfe0xmSh9tiAZDZD"
 
-function sendGreeting(){
-	request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			setting_type:"greeting",
-			greeting:{
-				text:"Timeless apparel for the masses."
-			}
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-		}
-	})
-}
-
 function sendTextMessage(sender, text) {
 	let messageData = { text:text }
 	
@@ -97,6 +80,33 @@ function sendTextMessage(sender, text) {
 		json: {
 			recipient: {id:sender},
 			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
+function sendImage(sender) {
+	let attachment = {
+		"attachment":{
+			"type":"image",
+			"payload":{
+			"url":"https://petersapparel.com/img/shirt.png"
+			}
+		}
+	}
+	
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: attachment,
 		}
 	}, function(error, response, body) {
 		if (error) {
