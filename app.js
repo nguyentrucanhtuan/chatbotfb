@@ -92,11 +92,13 @@ function sendTextMessage(sender, text) {
 }
 
 function sendImage(sender) {
-	let attachment = {
+	let messageData = { text:'ban muon goi hinh anh' }
+	
+	let attachmentData = {
 		"attachment":{
 			"type":"image",
 			"payload":{
-			"url":"https://petersapparel.com/img/shirt.png"
+				"url":"https://petersapparel.com/img/shirt.png"
 			}
 		}
 	}
@@ -107,7 +109,7 @@ function sendImage(sender) {
 		method: 'POST',
 		json: {
 			recipient: {id:sender},
-			message: attachment,
+			message: messageData,
 		}
 	}, function(error, response, body) {
 		if (error) {
