@@ -32,7 +32,7 @@ app.get('/', function (req, res) {
 
 // for facebook verification
 app.get('/webhook/', function (req, res) {
-	if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
+	if (req.query['hub.verify_token'] === 'anhtuandeptrailaday') {
 		res.send(req.query['hub.challenge'])
 	}
 	res.send('Error, wrong token')
@@ -92,9 +92,9 @@ function sendTextMessage(sender, text) {
 }
 
 function sendImage(sender) {
-	let messageData1 = { text:"ban muon goi hinh anh"}
+	messageData1 = { text:"ban muon goi hinh anh"}
 
-	let messageData = {
+	messageData = {
       attachment: {
         type: "image",
         payload: {
