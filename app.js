@@ -40,7 +40,7 @@ app.get('/webhook/', function (req, res) {
 
 // to post data
 app.post('/webhook/', function (req, res) {
-
+	sendAction(event.sender.id,'typing_on');
 	addPersistentMenu()
 
 	let messaging_events = req.body.entry[0].messaging
@@ -172,6 +172,25 @@ function addPersistentMenu(){
 					payload:"SHARE"
 				}
 			]
+		}
+	}, function(error, response, body) {
+		console.log(response)
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
+function sendAction(sender, action){
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json:{
+			recipient: {id:sender},
+			sender_action: action,
 		}
 	}, function(error, response, body) {
 		console.log(response)
