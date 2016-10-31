@@ -53,6 +53,7 @@ app.post('/webhook/', function (req, res) {
 			}
 			if (text === 'Image') {
 				sendImage(sender)
+				continue
 			}
 			sendTextMessage(sender, "Bạn vừa nói là: " + text.substring(0, 200))
 		}
