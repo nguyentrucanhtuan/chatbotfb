@@ -176,12 +176,7 @@ function menuFix(sender){
 		]
 	}*/
 
-	request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
+	messageData = {
 			setting_type : "call_to_actions",
 			thread_state : "existing_thread",
 			call_to_actions:[
@@ -208,6 +203,16 @@ function menuFix(sender){
 					url:"http://nguyenlieuphache.com/"
 				}
 			]
+	}
+
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+			
 		}
 	}, function(error, response, body) {
 		if (error) {
