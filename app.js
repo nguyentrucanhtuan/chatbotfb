@@ -95,13 +95,13 @@ function sendImage(sender) {
 	let messageData1 = { text:"ban muon goi hinh anh"}
 
 	let messageData = {
-		attachment : {
-			"type":"image",
-			"payload":{
-				"url":"https://petersapparel.com/img/shirt.png"
-			}
-		}
-	}
+      attachment: {
+        type: "image",
+        payload: {
+          url: "https://petersapparel.com/img/shirt.png"
+        }
+      }
+    }
 	
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
