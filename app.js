@@ -42,7 +42,6 @@ app.get('/webhook/', function (req, res) {
 app.post('/webhook/', function (req, res) {
 
 	let messaging_events = req.body.entry[0].messaging
-	sendGreeting();
 	for (let i = 0; i < messaging_events.length; i++) {
 		let event = req.body.entry[0].messaging[i]
 		let sender = event.sender.id
@@ -119,37 +118,12 @@ function sendImage(sender) {
 	})
 }
 
-function sendGreeting(){
-	let messageData = {
-		setting_type:"greeting",
-		greeting:{
-			"text":"Timeless apparel for the masses."
-		}
-    }
-	
-	request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: messageData,
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-		}
-	})   
-}
-
 function sendVideo(sender) {
 	let messageData = {
       attachment: {
-        type: "image",
+        type: "video",
         payload: {
-          url: "http://nguyenlieuphache.com/catalog/view/theme/nlpc2/images/cong-thuc-soda.png"
+          url: "https://petersapparel.com/bin/clip.mp4"
         }
       }
     }
