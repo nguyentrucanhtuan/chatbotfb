@@ -98,7 +98,7 @@ function sendImage(sender) {
       attachment: {
         type: "image",
         payload: {
-          url: "https://petersapparel.com/img/shirt.png"
+          url: "http://nguyenlieuphache.com/catalog/view/theme/nlpc2/images/cong-thuc-soda.png"
         }
       }
     }
