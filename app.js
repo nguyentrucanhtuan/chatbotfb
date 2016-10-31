@@ -92,8 +92,8 @@ function sendTextMessage(sender, text) {
 }
 
 function sendImage(sender) {
-	let messageData = { text:'ban muon goi hinh anh' }
-	
+	let messageData = { text:"ban muon goi hinh anh"}
+
 	let attachmentData = {
 		"attachment":{
 			"type":"image",
