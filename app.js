@@ -149,37 +149,37 @@ function sendVideo(sender) {
 
 function addPersistentMenu(){
 	request({
-	    url: 'https://graph.facebook.com/v2.6/me/thread_settings',
-	    qs: {access_token:token},
-	    method: 'POST',
-	    json:{
-	        setting_type : "call_to_actions",
-	        thread_state : "existing_thread",
-	        call_to_actions:[
-	            {
-	              type:"postback",
-	              title:"Home",
-	              payload:"home"
-	            },
-	            {
-	              type:"postback",
-	              title:"Cai Dat",
-	              payload:"CAI_DAT"
-	            },
-	            {
-	              type:"web_url",
-	              title:"Nguyen lieu pha che",
-	              url:"http://www.nguyenlieuphache.com/"
-	            }
-	          ]
-	    }
+		url: 'https://graph.facebook.com/v2.6/me/thread_settings',
+		qs: {access_token:token},
+		method: 'POST',
+		json:{
+			setting_type : "call_to_actions",
+			thread_state : "existing_thread",
+			call_to_actions:[
+				{
+					type:"postback",
+					title:"Danh sách sản phẩm",
+					payload:"PRODUCT_LIST"
+				},
+				{
+					type:"postback",
+					title:"Phản hồi và hỗ trợ khách hàng",
+					payload:"FEEDBACK_AND_HELP"
+				},
+				{
+					type:"web_url",
+					title:"Nguyen lieu pha che",
+					url:"http://www.nguyenlieuphache.com.vn"
+				}
+			]
+		}
 	}, function(error, response, body) {
-	    console.log(response)
-	    if (error) {
-	        console.log('Error sending messages: ', error)
-	    } else if (response.body.error) {
-	        console.log('Error: ', response.body.error)
-	    }
+		console.log(response)
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
 	})
 }
 
