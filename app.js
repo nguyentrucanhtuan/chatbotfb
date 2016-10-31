@@ -192,7 +192,7 @@ function addGreeting(){
 		json:{
 			setting_type: "greeting",
 			greeting: {
-				text: "Xin chào bạn đã đến với trang cung cấp nguyên liệu pha chế TNT, Tôi sẽ giúp bạn tìm thấy thứ bạn cần và hãy bắt đầu mua sắm nào!!!"
+				text: "Xin chào {{user_first_name}} đã đến với trang cung cấp nguyên liệu pha chế TNT, Tôi sẽ giúp bạn tìm thấy thứ bạn cần và hãy bắt đầu mua sắm nào!!!"
 			}
 			
 		}
