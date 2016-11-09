@@ -41,6 +41,7 @@ const fbMessage = (recipientId, msg, cb) => {
 // See the Webhook reference
 // https://developers.facebook.com/docs/messenger-platform/webhook-reference
 const getFirstMessagingEntry = (body) => {
+  console.log("body");
   const val = body.object === 'page' &&
     body.entry &&
     Array.isArray(body.entry) &&
