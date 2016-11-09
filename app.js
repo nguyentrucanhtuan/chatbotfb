@@ -50,6 +50,7 @@ app.post('/webhook/', function (req, res) {
 		const msg = messaging.message.text;
 		const atts = messaging.message.attachments;
 		console.log(msg);
+		console.log(sender);
 		if (atts) {
 		  // We received an attachment
 
@@ -98,7 +99,7 @@ app.post('/webhook/', function (req, res) {
 
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
-const token = "EAAHwsu50wLoBAPsGNwYnC3XLRZBja7HVFEh9jZAbZBZA34ZAQg5rMxA8kfACA2GbgwpJKA0M45obaRFFPHIcDaG01VQxS0Ssk0UvBYbfpDPASt9izjJmhxQ4TT8awmNPKL33mgq0a0ienhwW0fpKDysPigqGaK8gfe0xmSh9tiAZDZD"
+const token = "EAAHwsu50wLoBAGGRgSUg5xZCy3sHmdDW4AlkUXrZA9uZBk8IccCDbwzmBZBsmT88wB8w9ds0MXH754SnPpZCPayB5rnUw3DBBcxjEGcYiZAnifLvpH0N5DdeuO3NkdFHtzBc9qZB13s7U4YrYjm8py6obHhBu3sIU6ZBDp7rnCvk7wZDZD"
 
 function sendTextMessage(sender, text) {
 	let messageData = { text:text }
