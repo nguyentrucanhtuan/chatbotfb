@@ -49,7 +49,7 @@ app.post('/webhook/', function (req, res) {
 		const sender = messaging.sender.id;
 		const msg = messaging.message.text;
 		const atts = messaging.message.attachments;
-		console(msg);
+		console.log(msg);
 		if (atts) {
 		  // We received an attachment
 
