@@ -48,6 +48,7 @@ app.post('/webhook/', function (req, res) {
 	if (messaging && messaging.message) {
 		const sender = messaging.sender.id;
 		const msg = messaging.message.text;
+		const atts = messaging.message.attachments;
 		if (atts) {
 		  // We received an attachment
 
