@@ -60,10 +60,11 @@ app.post('/webhook/', function (req, res) {
 			'Sorry I can only process text messages for now.'
 		  );
 		} else if (msg) {
-			FB.fbMessage(
+			/*FB.fbMessage(
 			sender,
 			'You said: '+msg
-			);
+			);*/
+			sendTextMessage(sender, "Bạn vừa nói là: " + msg);
 		}
 	}
 	
