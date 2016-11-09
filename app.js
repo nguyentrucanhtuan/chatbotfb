@@ -17,6 +17,9 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 
+
+const FB = require('./facebook.js');
+
 app.set('port', (process.env.PORT || 5000))
 
 // parse application/x-www-form-urlencoded
@@ -40,8 +43,29 @@ app.get('/webhook/', function (req, res) {
 
 // to post data
 app.post('/webhook/', function (req, res) {
+	
+	const messaging = FB.getFirstMessagingEntry(req.body);
+	if (messaging && messaging.message) {
+		const sender = messaging.sender.id;
+		const msg = messaging.message.text;
+		if (atts) {
+		  // We received an attachment
 
-	addGreeting();
+		  // Let's reply with an automatic message
+		  FB.fbMessage(
+			sender,
+			'Sorry I can only process text messages for now.'
+		  );
+		} else if (msg) {
+			FB.fbMessage(
+			sender,
+			'You said: '+msg
+			);
+		}
+	}
+	
+	res.sendStatus(200);
+	/*addGreeting();
 	addPersistentMenu();
 
 	let messaging_events = req.body.entry[0].messaging
@@ -66,7 +90,7 @@ app.post('/webhook/', function (req, res) {
 			continue
 		}
 	}
-	res.sendStatus(200)
+	res.sendStatus(200)*/
 })
 
 
