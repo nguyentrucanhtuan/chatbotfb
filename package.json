@@ -1,7 +1,7 @@
 {
-  "name": "node-example",
+  "name": "node-tlamhuynh-botchat",
   "version": "1.0.0",
-  "description": "This example is so cool.",
+  "description": "Project for Coffee Tree Branding.",
   "main": "app.js",
   "scripts": {
 	"start": "node app.js",
@@ -12,12 +12,17 @@
     "heroku"
   ],
   "author": "lam-huynh",
-   "dependencies": {
+  "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.14.0",
     "request": "^2.71.0",
 	"node-wit": "^3.2.2",
 	"node-uuid": "^1.4.7",
+	"messenger-bot": "^2.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nguyentrucanhtuan/chatbotfb.git"
   },
   "license": "MIT"
 }
