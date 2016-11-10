@@ -21,15 +21,13 @@ mbot.on('error', (err) => {
 
 mbot.setGetStartedButton("GET_STARTED");
 
-bot.on('postback', function(userId, payload){
-
-    if (payload == "GET_STARTED") {
-        getStarted(userId);
+bot.on('postback', (payload, reply, actions) => {
+	let 
+	
+	if (payload.postback.payload == "GET_STARTED") {
+        getStarted(payload.sender.id);
     }
-
-    // Other postback callbacks here
-    // ...
-
+	
 });
 
 function getStarted(userId){
