@@ -33,6 +33,14 @@ mbot.on('postback', (payload, reply, actions) => {
 		reply({ text: 'Khong giup thi sao!'}, (err, info) => {})
 	}
 	
+	if (postback.payload == "PRODUCT_LIST"){
+		reply({ text: 'Khong list thi sao!'}, (err, info) => {})
+	}
+	
+	if (postback.payload == "SHARE"){
+		reply({ text: 'Khong share thi sao!'}, (err, info) => {})
+	}
+	
 });
 
 function getStarted(userId){
