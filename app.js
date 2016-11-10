@@ -18,8 +18,26 @@ mbot.on('error', (err) => {
   console.log(err.message)
 })
 
-let payload = [{"payload":"USER_DEFINED_PAYLOAD"}];
-mbot.setGetStartedButton(payload);
+
+mbot.setGetStartedButton("GET_STARTED");
+
+bot.on('postback', function(userId, payload){
+
+    if (payload == "GET_STARTED") {
+        getStarted(userId);
+    }
+
+    // Other postback callbacks here
+    // ...
+
+});
+
+function getStarted(userId){
+
+    // Get started process 
+	Console.log('getstart for userID'+userId);
+}
+
 mbot.on('message', (payload, reply) => {
   let text = payload.message.text
   
