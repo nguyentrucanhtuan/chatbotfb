@@ -22,7 +22,8 @@ mbot.on('error', (err) => {
 mbot.setGetStartedButton("GET_STARTED");
 
 mbot.on('postback', (payload, reply, actions) => {
-	let postback = payload.postback.payload;
+	let postback = payload.postback;
+	console.log(postback);
 	reply({ postback })
 	
 	if (payload.postback.payload == "GET_STARTED") {
