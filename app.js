@@ -21,7 +21,7 @@ mbot.on('error', (err) => {
 mbot.on('message', (payload, reply) => {
   let text = payload.message.text
 
-  bot.getProfile(payload.sender.id, (err, profile) => {
+  mbot.getProfile(payload.sender.id, (err, profile) => {
     if (err) throw err
 
     reply({ text }, (err) => {
