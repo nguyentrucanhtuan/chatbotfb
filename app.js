@@ -24,11 +24,14 @@ mbot.setGetStartedButton("GET_STARTED");
 mbot.on('postback', (payload, reply, actions) => {
 	let postback = payload.postback;
 	console.log(postback);
-	reply({ postback })
 	
 	if (payload.postback.payload == "GET_STARTED") {
         getStarted(payload.sender.id);
     }
+	
+	if (postback.payload == "FEEDBACK_AND_HELP"){
+		reply({ text: 'Khong giup thi sao!'}, (err, info) => {})
+	}
 	
 });
 
