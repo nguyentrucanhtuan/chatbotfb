@@ -4,7 +4,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
-const express = require('express')
 const http = require('http')
 const MBot = require('messenger-bot')
 const Config = require('./const.js');
