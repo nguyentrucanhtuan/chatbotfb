@@ -23,11 +23,7 @@ mbot.setGetStartedButton("GET_STARTED");
 
 mbot.on('postback', (payload, reply, actions) => {
 	let postback = payload.postback.payload;
-	reply({ postback }, (err) => {
-      if (err) throw err
-
-      //console.log(`Echoed postback to ${profile.first_name} ${profile.last_name}: ${text}`)
-    })
+	reply({ postback })
 	
 	if (payload.postback.payload == "GET_STARTED") {
         getStarted(payload.sender.id);
