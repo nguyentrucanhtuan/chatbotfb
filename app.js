@@ -19,7 +19,7 @@ mbot.on('error', (err) => {
 })
 
 
-mbot.setGetStartedButton("GET_STARTED");
+mbot.setGetStartedButton([{"payload":"GET_STARTED"}]);
 
 mbot.on('postback', (payload, reply, actions) => {
 	let postback = payload.postback;
