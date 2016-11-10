@@ -18,12 +18,25 @@ mbot.on('error', (err) => {
   console.log(err.message)
 })
 
+let payload = [{"payload":"USER_DEFINED_PAYLOAD"}];
+mbot.setGetStartedButton(payload);
 mbot.on('message', (payload, reply) => {
   let text = payload.message.text
-
+  
   mbot.getProfile(payload.sender.id, (err, profile) => {
     if (err) throw err
 
+	
+	/*switch (text){
+		case 'say hi':
+		
+			break;
+		case 'Danh sach san pham':
+		
+			break;
+			
+		case ''
+	}*/
     reply({ text }, (err) => {
       if (err) throw err
 
