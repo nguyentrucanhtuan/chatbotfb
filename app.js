@@ -104,6 +104,8 @@ app.use('/webhook', bot.middleware());
 
 bot.on('message', function(userId, message){
     bot.sendTextMessage(userId, "Echo Message:" + message);
+	
+	console.log(message);
 });
 
 
