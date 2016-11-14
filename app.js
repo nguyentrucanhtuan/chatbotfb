@@ -134,46 +134,50 @@ function getStarted(userId){
 function showShopCollection(userId){
 	var elements = [
 		{
-			"title": "Classic White T-Shirt",
-			"image_url": "http://petersapparel.parseapp.com/img/item100-thumb.png",
-			"subtitle": "Soft white cotton t-shirt is back in style",
+			"title": "Máy xay cà phê",
+			"image_url": "http://nguyenlieuphache.com/catalog/view/theme/nlpc2/images/may-xay-ca-phe.png",
+			"subtitle": "Máy xay cà phê dành cho quán",
 			"buttons": [
 				{
-					"type": "web_url",
-					"url": "https://petersapparel.parseapp.com/view_item?item_id=100",
-					"title": "View Item"
-				},
-				{
-					"type": "web_url",
-					"url": "https://petersapparel.parseapp.com/buy_item?item_id=100",
-					"title": "Buy Item"
-				},
-				{
 					"type": "postback",
-					"title": "Bookmark Item",
-					"payload": "USER_DEFINED_PAYLOAD_FOR_ITEM100"
+					"title": "Xem sản phẩm",
+					"payload": "VIEW_PRODUCT_1"
 				}
 			]
 		},
 		{
-			"title": "Classic Grey T-Shirt",
-			"image_url": "http://petersapparel.parseapp.com/img/item101-thumb.png",
-			"subtitle": "Soft gray cotton t-shirt is back in style",
+			"title": "Máy xay sinh tố",
+			"image_url": "http://nguyenlieuphache.com/catalog/view/theme/nlpc2/images/may-xay-sinh-to.png",
+			"subtitle": "Máy sinh tố chuyên nghiệp dành cho quán",
 			"buttons": [
 				{
-					"type": "web_url",
-					"url": "https://petersapparel.parseapp.com/view_item?item_id=101",
-					"title": "View Item"
-				},
-				{
-					"type": "web_url",
-					"url": "https://petersapparel.parseapp.com/buy_item?item_id=101",
-					"title": "Buy Item"
-				},
+					"type": "postback",
+					"title": "Xem sản phẩm",
+					"payload": "VIEW_PRODUCT_2"
+				}
+			]
+		},
+		{
+			"title": "Mứt trái cây",
+			"image_url": "http://nguyenlieuphache.com/catalog/view/theme/nlpc2/images/mut-trai-cay01.png",
+			"subtitle": "Mứt trái cây dùng cho thay thế trái cây tươi và làm được nhiều món hấp dẫn",
+			"buttons": [
 				{
 					"type": "postback",
-					"title": "Bookmark Item",
-					"payload": "USER_DEFINED_PAYLOAD_FOR_ITEM101"
+					"title": "Xem sản phẩm",
+					"payload": "VIEW_PRODUCT_3"
+				}
+			]
+		},
+		{
+			"title": "Syrup pha chế",
+			"image_url": "http://nguyenlieuphache.com/catalog/view/theme/nlpc2/images/syrup-pha-che.png",
+			"subtitle": "Syrup dùng trong các loại thức uống soda, smoothie,... mát lạnh",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem sản phẩm",
+					"payload": "VIEW_PRODUCT_3"
 				}
 			]
 		}
