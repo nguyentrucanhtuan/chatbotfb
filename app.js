@@ -156,6 +156,7 @@ function getStartShoppingPostBack(userId){
         "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"
       }
     ]
+	console.log("enter quick replies start shopping");
 	bot.sendQuickReplies(userId,text,replies);
 }
 
