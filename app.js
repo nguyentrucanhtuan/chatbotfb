@@ -143,20 +143,21 @@ bot.on('postback', function(userId, payload){
 });
 
 function getStartShoppingPostBack(userId){
-	var text = "Pick a color:";
+	var text = "Quý khách cần tìm sản phẩm cho:";
 	var replies = [
-      {
+	  {
         "content_type":"text",
-        "title":"Red",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED",
-        "image_url":"http://petersfantastichats.com/img/red.png"
+        "title":"Sản phẩm thường dùng cho quán",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP",
+        "image_url":"http://petersfantastichats.com/img/green.png"
       },
       {
         "content_type":"text",
-        "title":"Green",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN",
-        "image_url":"http://petersfantastichats.com/img/green.png"
+        "title":"Sảm phẩm cho quán mới mở",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP",
+        "image_url":"http://petersfantastichats.com/img/red.png"
       }
+      
     ]
 	bot.sendQuickReplies(userId,text,replies);
 }
