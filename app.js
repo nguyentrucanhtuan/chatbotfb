@@ -118,12 +118,42 @@ bot.on('postback', function(userId, payload){
 		showShopCollection(userId);
 		console.log("Enter postback show collection");
 	}
+	
+	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_START_SHOPPING"){
+		startShopping(userId);
+	}
+	
+	
+	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHARE_BOT"){
+		getSharePostBack(userId);
+	}
+	
+	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_FEEDBACK_HELP_LEGAL"){
+		getFHLPostBack(userId);
+	}
+	
+	//if (payload == ""){
+		
+	//}
+
 
     // Other postback callbacks here
     // ...
 
 });
 
+function startShopping(userId){
+	
+}
+
+function getSharePostBack(userId){
+	
+}
+
+
+function getFHLPostBack(userId){
+	
+}
 
 function getStarted(userId){
 	
@@ -222,18 +252,29 @@ bot.on('attachment', function(userId, attachment){
 var menuButtons = [
     {
         "type": "postback",
-        "title": "Shop Collection",
+        "title": "Top selling tại TNTDrink",
         "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COLLECTION"
     },
     {
         "type": "postback",
-        "title": "Start a New Order",
-        "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_START_ORDER"
+        "title": "Bắt đầu mua sắm",
+        "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_START_SHOPPING"
     },
     {
         "type": "web_url",
         "title": "View Website",
         "url": "http://nguyenlieuphache.com.vn"
+    },
+	{
+        "type": "postback",
+        "title": "Chia sẻ",
+        "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHARE_BOT"
+    },
+	
+	{
+        "type": "postback",
+        "title": "Feedback, help & legal",
+        "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_FEEDBACK_HELP_LEGAL"
     }
 ];
 bot.setPersistentMenu(menuButtons);
