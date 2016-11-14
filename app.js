@@ -120,7 +120,7 @@ bot.on('postback', function(userId, payload){
 	}
 	
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_START_SHOPPING"){
-		startShopping(userId);
+		getStartShoppingPostBack(userId);
 	}
 	
 	
@@ -142,8 +142,23 @@ bot.on('postback', function(userId, payload){
 
 });
 
-function startShopping(userId){
-	
+function getStartShoppingPostBack(userId){
+	var text = "Pick a color:";
+	var replies = [
+      {
+        "content_type":"text",
+        "title":"Red",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED",
+        "image_url":"http://petersfantastichats.com/img/red.png"
+      },
+      {
+        "content_type":"text",
+        "title":"Green",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN",
+        "image_url":"http://petersfantastichats.com/img/green.png"
+      }
+    ]
+	bot.sendQuickReplies(userId,text,replies);
 }
 
 function getSharePostBack(userId){
