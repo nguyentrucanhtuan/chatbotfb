@@ -165,7 +165,9 @@ function getStartShoppingPostBack(userId){
 	  
     ];
 	console.log("enter quick replies start shopping");
-	bot.sendQuickReplies(userId,text,replies);
+	bot.sendQuickReplies(userId,text,replies,"REGULAR", function(err,result){
+		console.log(result);
+	});
 }
 
 function getSharePostBack(userId){
