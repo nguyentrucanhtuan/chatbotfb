@@ -78,6 +78,58 @@ mbot.on('message', (payload, reply) => {
 })
 */
 
+FBBotFramework.middleware = function(){
+	var bot = this;
+
+    return function (req, res) {
+        if (req.method === 'GET') {
+            return bot.verify(req, res);
+        }
+
+        if (req.method === 'POST') {
+
+            // Read data from the request
+            var data = '';
+            req.setEncoding('utf8');
+            req.on('data', function (chunk) {
+                data += chunk;
+            });
+
+            req.on('end', function () {
+
+                // Always return HTTP200 to Facebook's POST Request
+                res.send({});
+
+                var messageData = JSON.parse(data);
+                var messagingEvent = messageData.entry[0].messaging;
+                messagingEvent.forEach(function (event) {
+
+                    // Extract senderID, i.e. recipient
+                    var sender = event.sender.id;
+
+                    // Trigger onMessage Listener
+                    if (event.message && event.message.text) {
+						console.log(event.message);
+                        bot.emit('message', sender, event.message.text);
+                    }
+
+                    // Trigger onPostback Listener
+                    if (event.postback && event.postback.payload) {
+                        bot.emit('postback', sender, event.postback.payload);
+                    }
+
+                    // Trigger onAttachment Listener
+                    if (event.message && event.message.attachments) {
+                        bot.emit('attachment', sender, event.message.attachments);
+                    }
+
+                });
+            });
+
+        }
+    };
+}
+
 let bot = new FBBotFramework({
     page_token: Config.FB_PAGE_TOKEN,
     verify_token: Config.FB_VERIFY_TOKEN
