@@ -126,21 +126,26 @@ bot.on('postback', function(userId, payload){
 
 
 function getStarted(userId){
-	var text = "Xin chào {{user_first_name}}, Cảm ơn quý bạn đã ghé thăm trang Nguyên liệu pha chế, tôi là \"Trợ lý mua sắm\" của bạn. Hãy xem qua hướng dẫn và bắt đầu mua sắm nhé. Cảm ơn ^^!";
-	var buttons = [
-		{
-			"type": "web_url",
-			"url": "http://nguyenlieuphache.com.vn",
-			"title": "Ghé thăm trang web"
-		},
-		{
-			"type": "postback",
-			"title": "Bắt đầu mua hàng",
-			"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_START_SHOPPING"
-		}
-	];
-    // Get started process 
-	bot.sendButtonMessage(userId, text, buttons);
+	
+	bot.getUserProfile(userId, function (err, profile) {
+		console.log(profile);
+		var text = "Xin chào {{user_first_name}}, Cảm ơn quý bạn đã ghé thăm trang Nguyên liệu pha chế, tôi là \"Trợ lý mua sắm\" của bạn. Hãy xem qua hướng dẫn và bắt đầu mua sắm nhé. Cảm ơn ^^!";
+		var buttons = [
+			{
+				"type": "web_url",
+				"url": "http://nguyenlieuphache.com.vn",
+				"title": "Ghé thăm trang web"
+			},
+			{
+				"type": "postback",
+				"title": "Bắt đầu mua hàng",
+				"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_START_SHOPPING"
+			}
+		];
+		// Get started process 
+		bot.sendButtonMessage(userId, text, buttons);
+	});
+	
 }
 
 
