@@ -179,7 +179,7 @@ function showShopCollection(userId){
 		}
 	];
 
-	bot.sendGenericMessage(userID, elements);
+	bot.sendGenericMessage(userId, elements);
 
 }
 
