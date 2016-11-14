@@ -148,14 +148,16 @@ function getStartShoppingPostBack(userId){
 	  {
         "content_type":"text",
         "title":"Sản phẩm thường dùng cho quán",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP"
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP",
+		"image_url":"http://petersfantastichats.com/img/red.png"
       },
       {
         "content_type":"text",
         "title":"Sảm phẩm cho quán mới mở",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP",
+		"image_url":"http://petersfantastichats.com/img/green.png"
       }
-    ]
+    ];
 	console.log("enter quick replies start shopping");
 	bot.sendQuickReplies(userId,text,replies);
 }
