@@ -140,7 +140,7 @@ function getStarted(userId){
 		}
 	];
     // Get started process 
-	bot.sendButtonMessage(recipient, text, buttons);
+	bot.sendButtonMessage(userId, text, buttons);
 }
 
 
