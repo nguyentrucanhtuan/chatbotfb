@@ -106,10 +106,10 @@ FBBotFramework.middleware = function(){
 
                     // Extract senderID, i.e. recipient
                     var sender = event.sender.id;
-
+					console.log(event);
                     // Trigger onMessage Listener
                     if (event.message && event.message.text) {
-						console.log(event.message);
+						
                         bot.emit('message', sender, event.message.text);
                     }
 
