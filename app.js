@@ -78,7 +78,7 @@ mbot.on('message', (payload, reply) => {
 })
 */
 
-var bot = new FBBotFramework({
+let bot = new FBBotFramework({
     page_token: Config.FB_PAGE_TOKEN,
     verify_token: Config.FB_VERIFY_TOKEN
 });
@@ -116,6 +116,7 @@ bot.on('postback', function(userId, payload){
 	
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COLLECTION"){
 		showShopCollection(userId);
+		console.log("Enter postback show collection");
 	}
 
     // Other postback callbacks here
