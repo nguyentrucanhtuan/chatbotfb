@@ -151,7 +151,8 @@ function getSharePostBack(userId){
 		{
 			"title": "Mua sắm mọi thứ dành cho quán cafe tại TNTDrink",
 			"image_url": "https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/12986925_1705723756336966_8557111046595659161_n.jpg?oh=08b611f25742ea7bebce3e661bd88311&oe=58D2919D",
-			"subtitle": "Mua nguyên liệu, dụng cụ pha chế. Cafe nguyên chất, máy pha - xay cafe giá tốt",
+			"subtitle": "Mua nguyên liệu, dụng cụ pha chế. Cafe nguyên chất, máy pha - xay cafe giá tốt. Thử ngay!",
+			"item_url":"http://m.me/nguyenlieuphachecom",
 			"buttons": [
 				{
 					"type": "element_share",
