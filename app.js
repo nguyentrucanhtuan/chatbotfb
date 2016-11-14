@@ -147,24 +147,15 @@ function getStartShoppingPostBack(userId){
 	var replies = [
 	  {
         "content_type":"text",
-        "title":"Nguyen lieu pha che",
+        "title":"Quán đang hoạt động",
         "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
       },
 	  {
         "content_type":"text",
-        "title":"dung cu pha che",
+        "title":"Quán mới mở",
         "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
       },
-      {
-        "content_type":"text",
-        "title":"May xay cafe",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
-      },
-	  {
-        "content_type":"text",
-        "title":"May pha cafe",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
-      }
+     
 	  
     ];
 	console.log("enter quick replies start shopping");
