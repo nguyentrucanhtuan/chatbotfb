@@ -129,7 +129,7 @@ function getStarted(userId){
 	
 	bot.getUserProfile(userId, function (err, profile) {
 		console.log(profile);
-		var text = "Xin chào {{user_first_name}}, Cảm ơn quý bạn đã ghé thăm trang Nguyên liệu pha chế, tôi là \"Trợ lý mua sắm\" của bạn. Hãy xem qua hướng dẫn và bắt đầu mua sắm nhé. Cảm ơn ^^!";
+		var text = "Xin chào "+profile.first_name+" "+profile.last_name+", Cảm ơn quý bạn đã ghé thăm trang Nguyên liệu pha chế, tôi là \"Trợ lý mua sắm\" của bạn. Hãy xem qua hướng dẫn và bắt đầu mua sắm nhé. Cảm ơn ^^!";
 		var buttons = [
 			{
 				"type": "web_url",
