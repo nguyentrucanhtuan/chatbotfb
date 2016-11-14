@@ -132,9 +132,13 @@ bot.on('postback', function(userId, payload){
 		getFHLPostBack(userId);
 	}
 	
-	//if (payload == ""){
-		
-	//}
+	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP"){
+		showShopCollection(userId);
+	}
+	
+	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"){
+		showShopCollection(userId);
+	}
 
 
     // Other postback callbacks here
@@ -148,12 +152,12 @@ function getStartShoppingPostBack(userId){
 	  {
         "content_type":"text",
         "title":"Quán đang hoạt động",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP"
       },
 	  {
         "content_type":"text",
         "title":"Quán mới mở",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"
       },
      
 	  
