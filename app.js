@@ -148,14 +148,13 @@ function getStartShoppingPostBack(userId){
 	  {
         "content_type":"text",
         "title":"Sản phẩm thường dùng cho quán",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP"
       },
       {
         "content_type":"text",
         "title":"Sảm phẩm cho quán mới mở",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"
       }
-      
     ]
 	bot.sendQuickReplies(userId,text,replies);
 }
