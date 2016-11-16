@@ -209,7 +209,7 @@ function getQuickReplyUsedShopPayload(userId){
 			"buttons": [
 				{
 					"type": "postback",
-					"title": "Xem sản phẩm",
+					"title": "Chọn mua Syrup",
 					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_SYRUP"
 				}
 			]
@@ -221,8 +221,8 @@ function getQuickReplyUsedShopPayload(userId){
 			"buttons": [
 				{
 					"type": "postback",
-					"title": "Xem sản phẩm",
-					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_BARTENDER"
+					"title": "Mua dụng cụ",
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_BARTENDER_TOOL"
 				}
 			]
 		},
@@ -255,7 +255,7 @@ function getQuickReplyNewShopPayload(userId){
 				{
 					"type": "postback",
 					"title": "Xem sản phẩm",
-					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_BARTENDER"
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_BARTENDER_TOOL"
 				}
 			]
 		},
@@ -308,14 +308,31 @@ bot.on('postback', function(userId, payload){
 		getFHLPostBack(userId);
 	}
 	
-	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP"){
-		showShopCollection(userId);
+
+	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE"){
+		getShowCoffeePostBack(userId);
 	}
 	
-	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"){
-		showShopCollection(userId);
+	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_JAM"){
+		getShowJamPostBack(userId);
 	}
-
+	
+	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_SYRUP"){
+		getShowSyrupPostBack(userId);
+	}
+	
+	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_BARTENDER_TOOL"){
+		getShowBartenderToolPostBack(userId);
+	}
+	
+	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_MAKER"){
+		getShowCoffeeMakerPostBack(userId);
+	}
+	
+	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_MATERIAL_BARTENDER"){
+		getShowBartenderMaterialPostBack(userId);
+	}
+	
 
     // Other postback callbacks here
     // ...
@@ -362,6 +379,97 @@ function getSharePostBack(userId){
 
 
 function getFHLPostBack(userId){
+	
+}
+
+
+function getShowCoffeePostBack(userId){
+	bot.sendTextMessage(userId, "Sản phẩm cafe sạch - cafe nguyên chất Coffee Tree");
+	
+	var elements = [
+		{
+			"title": "Robusta Nâu thượng hạng",
+			"image_url": "http://coffeetree.vn/ca-phe/image/cache/catalog/hinh-ca-phe/robusta-image-228x228.png",
+			"subtitle": "Giá 155.000 VNĐ/Kg.Cà phê sạch Robusta Nâu Thượng Hạng có vị đắng vừa, mùi hương thơm nhẹ, cafein vừa, chát, hậu vị ngọt.",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem Sản phẩm",
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_ROBUSTA"
+				}
+			]
+		},
+		{
+			"title": "Culi Nâu Đặc Biệt",
+			"image_url": "http://coffeetree.vn/ca-phe/image/cache/catalog/hinh-ca-phe/culi-hat-228x228.png",
+			"subtitle": "Giá 190.000 VNĐ/Kg.Cà phê sạch Robusta Nâu Thượng Hạng có vị đắng vừa, mùi hương thơm nhẹ, cafein vừa, chát, hậu vị ngọt.",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem Sản phẩm",
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_ROBUSTA"
+				}
+			]
+		},
+		{
+			"title": "Arabica Nâu đặc biệt",
+			"image_url": "http://coffeetree.vn/ca-phe/image/cache/catalog/hinh-ca-phe/arabica-bean-228x228.png",
+			"subtitle": "Giá 290.000 VNĐ/Kg.Cà phê sạch Robusta Nâu Thượng Hạng có vị đắng vừa, mùi hương thơm nhẹ, cafein vừa, chát, hậu vị ngọt.",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem Sản phẩm",
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_ROBUSTA"
+				}
+			]
+		},
+		{
+			"title": "Arabica Nâu Medium",
+			"image_url": "http://coffeetree.vn/ca-phe/image/cache/catalog/ca-phe/arabica-medium-228x228.jpg",
+			"subtitle": "Giá 250.000 VNĐ/Kg.Cà phê sạch Robusta Nâu Thượng Hạng có vị đắng vừa, mùi hương thơm nhẹ, cafein vừa, chát, hậu vị ngọt.",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem Sản phẩm",
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_ROBUSTA"
+				}
+			]
+		},
+		
+		{
+			"title": "Coffee tree special",
+			"image_url": "http://coffeetree.vn/ca-phe/image/cache/catalog/ca-phe/coffee-tree-dac-biet-228x228.jpg",
+			"subtitle": "Giá 200.000 VNĐ/Kg.Cà phê sạch Robusta Nâu Thượng Hạng có vị đắng vừa, mùi hương thơm nhẹ, cafein vừa, chát, hậu vị ngọt.",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem Sản phẩm",
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_ROBUSTA"
+				}
+			]
+		},
+	];
+
+	bot.sendGenericMessage(userId, elements);
+}
+
+function getShowJamPostBack(userId){
+	
+}
+
+function getShowSyrupPostBack(userId){
+	
+}
+
+function getShowCoffeeMakerPostBack(userId){
+	
+}
+
+function getShowBartenderMaterialPostBack(userId){
+	
+}
+
+function getShowBartenderToolPostBack(userId){
 	
 }
 
