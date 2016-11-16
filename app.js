@@ -137,11 +137,15 @@ let bot = new FBBotFramework({
     verify_token: Config.FB_VERIFY_TOKEN
 });
 
+bot.setGetStartedButton("GET_STARTED");
+
 
 let app = express()
 
 //app.use(bodyParser.json())
 app.use('/webhook', bot.middleware2());
+
+
 
 //app.use(bodyParser.urlencoded({
 //  extended: true
@@ -159,18 +163,86 @@ app.use('/webhook', bot.middleware2());
 bot.on('message', function(userId, message){
     bot.sendTextMessage(userId, "Echo Message:" + message);
 });
-
+/// Quickreply Payload Handler
 bot.on('quickreply', function(userId, payload){
 	console.log(payload);
 	if(payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP"){
-			
+		getQuickReplyUsedShopPayload(userId)	;
 	}
 		
 	if(payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"){
-			
+		getQuickReplyNewShopPayload(userId)	
 	}
 });
-bot.setGetStartedButton("GET_STARTED");
+
+function getQuickReplyUsedShopPayload(userId){
+	bot.sendTextMessage(userId, "Đối với quán đã hoạt động, quý khách có thể cần mua sản phẩm sau?");
+	var elements = [
+		{
+			"title": "Máy xay cà phê",
+			"image_url": "http://nguyenlieuphache.com/catalog/view/theme/nlpc2/images/may-xay-ca-phe.png",
+			"subtitle": "Máy xay cà phê dành cho quán",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem sản phẩm",
+					"payload": "VIEW_PRODUCT_1"
+				}
+			]
+		},
+		{
+			"title": "Máy xay sinh tố",
+			"image_url": "http://nguyenlieuphache.com/catalog/view/theme/nlpc2/images/may-xay-sinh-to.png",
+			"subtitle": "Máy sinh tố chuyên nghiệp dành cho quán",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem sản phẩm",
+					"payload": "VIEW_PRODUCT_2"
+				}
+			]
+		},
+		{
+			"title": "Mứt trái cây",
+			"image_url": "http://nguyenlieuphache.com/catalog/view/theme/nlpc2/images/mut-trai-cay01.png",
+			"subtitle": "Mứt trái cây dùng cho thay thế trái cây tươi và làm được nhiều món hấp dẫn",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem sản phẩm",
+					"payload": "VIEW_PRODUCT_3"
+				}
+			]
+		},
+		{
+			"title": "Syrup pha chế",
+			"image_url": "http://nguyenlieuphache.com/catalog/view/theme/nlpc2/images/syrup-pha-che.png",
+			"subtitle": "Syrup dùng trong các loại thức uống soda, smoothie,... mát lạnh",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem sản phẩm",
+					"payload": "VIEW_PRODUCT_3"
+				}
+			]
+		}
+	];
+
+	bot.sendGenericMessage(userId, elements);
+}
+
+function getQuickReplyNewShopPayload(userId){
+	bot.sendTextMessage(userId, "Đối với quán mới, quý khách có thể cần mua sản phẩm sau?");
+}
+/// End Quickreply Payload Handler
+
+
+
+
+/// PostBack Payload Handler
+
+
+
 bot.on('postback', function(userId, payload){
 
     if (payload == "GET_STARTED") {
@@ -208,6 +280,7 @@ bot.on('postback', function(userId, payload){
     // ...
 
 });
+
 
 function getStartShoppingPostBack(userId){
 	var text = "Quý khách cần tìm sản phẩm cho:";
@@ -330,6 +403,11 @@ function showShopCollection(userId){
 	bot.sendGenericMessage(userId, elements);
 
 }
+
+
+
+/// End PostBack Payload Handler
+
 
 // Setup listener for attachment
 bot.on('attachment', function(userId, attachment){
