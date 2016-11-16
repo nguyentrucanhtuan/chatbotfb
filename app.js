@@ -218,12 +218,14 @@ function getStartShoppingPostBack(userId){
     ];
 	console.log("enter quick replies start shopping");
 	bot.sendQuickReplies(userId,text,replies,"REGULAR", function(err,result){
+		console.log("print result quick reply");
 		console.log(result);
+		console.log("end print result quick reply");
 		//if(result.quick_reply.payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP"){
 			
 		//}
 		
-		//if(result.quick_reply.payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"){
+		///if(result.quick_reply.payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"){
 			
 		//}
 		
