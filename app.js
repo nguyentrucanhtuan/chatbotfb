@@ -106,12 +106,14 @@ FBBotFramework.prototype.middleware2 = function(){
 
                     // Extract senderID, i.e. recipient
                     var sender = event.sender.id;
-					console.log(event);
                     // Trigger onMessage Listener
                     if (event.message && event.message.text) {
-						
                         bot.emit('message', sender, event.message.text);
                     }
+					
+					if (event.message && event.message.quick_reply && event.message.quick_reply.payload){
+						bot.emit('quickreply', sender, event.message.quick_reply.payload);
+					}
 
                     // Trigger onPostback Listener
                     if (event.postback && event.postback.payload) {
@@ -156,11 +158,18 @@ app.use('/webhook', bot.middleware2());
 
 bot.on('message', function(userId, message){
     bot.sendTextMessage(userId, "Echo Message:" + message);
-	
-	console.log(message);
 });
 
-
+bot.on('quickreply', function(userId, payload){
+	console.log(payload);
+	if(payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP"){
+			
+	}
+		
+	if(payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"){
+			
+	}
+});
 bot.setGetStartedButton("GET_STARTED");
 bot.on('postback', function(userId, payload){
 
@@ -216,20 +225,7 @@ function getStartShoppingPostBack(userId){
      
 	  
     ];
-	console.log("enter quick replies start shopping");
-	bot.sendQuickReplies(userId,text,replies,"REGULAR", function(err,result){
-		console.log("print result quick reply");
-		console.log(result);
-		console.log("end print result quick reply");
-		//if(result.quick_reply.payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP"){
-			
-		//}
-		
-		///if(result.quick_reply.payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"){
-			
-		//}
-		
-	});
+	bot.sendQuickReplies(userId,text,replies,"REGULAR");
 }
 
 function getSharePostBack(userId){
