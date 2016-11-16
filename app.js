@@ -393,31 +393,9 @@ function getShowCoffeePostBack(userId){
 			"subtitle": "Giá 155.000 VNĐ/Kg.Cà phê sạch Robusta Nâu Thượng Hạng có vị đắng vừa, mùi hương thơm nhẹ, cafein vừa, chát, hậu vị ngọt.",
 			"buttons": [
 				{
-					"type": "payment",
+					"type": "postback",
 					"title": "Mua 155.000 VNĐ/Kg",
-					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_ROBUSTA",
-					"payment_summary":{
-					  "currency":"VND",
-					  "payment_type":"FIXED_AMOUNT",
-					  "is_test_payment" : true, 
-					  "merchant_name":"Peter's Apparel",
-					  "requested_user_info":[
-						"shipping_address",
-						"contact_name",
-						"contact_phone",
-						"contact_email"
-					  ],
-					  "price_list":[
-						{
-						  "label":"Subtotal",
-						  "amount":"29.99"
-						},
-						{
-						  "label":"Taxes",
-						  "amount":"2.47"
-						}
-					  ]
-					}
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_ROBUSTA"
 				}
 			]
 		},
