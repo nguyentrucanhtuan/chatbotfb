@@ -179,26 +179,14 @@ function getQuickReplyUsedShopPayload(userId){
 	bot.sendTextMessage(userId, "Đối với quán đã hoạt động, quý khách có thể cần mua sản phẩm sau?");
 	var elements = [
 		{
-			"title": "Máy xay cà phê",
-			"image_url": "http://nguyenlieuphache.com/catalog/view/theme/nlpc2/images/may-xay-ca-phe.png",
-			"subtitle": "Máy xay cà phê dành cho quán",
+			"title": "Cafe nguyên chất",
+			"image_url": "http://nguyenlieuphache.com.vn/upload/tra/coffee-tree-dac-biet.jpg",
+			"subtitle": "Cà phê Robusta, Culi, Arabica nguyên chất pha máy, pha phin",
 			"buttons": [
 				{
 					"type": "postback",
-					"title": "Xem sản phẩm",
-					"payload": "VIEW_PRODUCT_1"
-				}
-			]
-		},
-		{
-			"title": "Máy xay sinh tố",
-			"image_url": "http://nguyenlieuphache.com/catalog/view/theme/nlpc2/images/may-xay-sinh-to.png",
-			"subtitle": "Máy sinh tố chuyên nghiệp dành cho quán",
-			"buttons": [
-				{
-					"type": "postback",
-					"title": "Xem sản phẩm",
-					"payload": "VIEW_PRODUCT_2"
+					"title": "Chọn mua cafe",
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE"
 				}
 			]
 		},
@@ -209,8 +197,8 @@ function getQuickReplyUsedShopPayload(userId){
 			"buttons": [
 				{
 					"type": "postback",
-					"title": "Xem sản phẩm",
-					"payload": "VIEW_PRODUCT_3"
+					"title": "Chọn mua mứt",
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_JAM"
 				}
 			]
 		},
@@ -222,7 +210,7 @@ function getQuickReplyUsedShopPayload(userId){
 				{
 					"type": "postback",
 					"title": "Xem sản phẩm",
-					"payload": "VIEW_PRODUCT_3"
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_SYRUP"
 				}
 			]
 		}
@@ -233,6 +221,47 @@ function getQuickReplyUsedShopPayload(userId){
 
 function getQuickReplyNewShopPayload(userId){
 	bot.sendTextMessage(userId, "Đối với quán mới, quý khách có thể cần mua sản phẩm sau?");
+	
+	var elements = [
+		{
+			"title": "Máy Pha -  Xay cà phê",
+			"image_url": "http://nguyenlieuphache.com.vn/upload/Mayxaycafe/may-xay-cafe-1-3-hp-1a.jpg",
+			"subtitle": "Các loại Máy pha cafe Espresso và xay cà phê dành cho quán",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem Sản phẩm",
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_MAKER"
+				}
+			]
+		},
+		{
+			"title": "Dụng cụ pha chế",
+			"image_url": "http://nguyenlieuphache.com.vn/upload/thietbi/isi-binh-xit-kem.jpg",
+			"subtitle": "Máy xay sinh tố, bình xịt kem, dụng cụ pha cafe, các món take away,...",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem sản phẩm",
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_BARTENDER"
+				}
+			]
+		},
+		{
+			"title": "Nguyên liệu pha chế",
+			"image_url": "http://nguyenlieuphache.com.vn/upload/Mut/Berrino/kiwi.jpg",
+			"subtitle": "Mứt trái cây, syrup, trà, matcha, sữa tươi pha chế các món takeaway và cafe",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem sản phẩm",
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_MATERIAL_BARTENDER"
+				}
+			]
+		}
+	];
+
+	bot.sendGenericMessage(userId, elements);
 }
 /// End Quickreply Payload Handler
 
