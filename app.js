@@ -394,7 +394,7 @@ function getShowCoffeePostBack(userId){
 			"buttons": [
 				{
 					"type": "postback",
-					"title": "Xem Sản phẩm",
+					"title": "Mua 155.000 VNĐ/Kg",
 					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_ROBUSTA"
 				}
 			]
