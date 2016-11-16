@@ -531,7 +531,7 @@ function getBuyCoffeeRobustaPostBack(userId){
 		]
 	};
 
-	bot.sendReceiptMessage(recipient, receipt);
+	bot.sendReceiptMessage(userId, receipt);
 }
 
 function getStarted(userId){
