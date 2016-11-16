@@ -213,7 +213,19 @@ function getQuickReplyUsedShopPayload(userId){
 					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_SYRUP"
 				}
 			]
-		}
+		},
+		{
+			"title": "Dụng cụ pha chế",
+			"image_url": "http://nguyenlieuphache.com.vn/upload/thietbi/isi-binh-xit-kem.jpg",
+			"subtitle": "Máy xay sinh tố, bình xịt kem, dụng cụ pha cafe, các món take away,...",
+			"buttons": [
+				{
+					"type": "postback",
+					"title": "Xem sản phẩm",
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_BARTENDER"
+				}
+			]
+		},
 	];
 
 	bot.sendGenericMessage(userId, elements);
