@@ -78,7 +78,7 @@ mbot.on('message', (payload, reply) => {
 })
 */
 
-FBBotFramework.middleware = function(){
+FBBotFramework.prototype.middleware2 = function(){
 	var bot = this;
 
     return function (req, res) {
@@ -139,7 +139,7 @@ let bot = new FBBotFramework({
 let app = express()
 
 //app.use(bodyParser.json())
-app.use('/webhook', bot.middleware());
+app.use('/webhook', bot.middleware2());
 
 //app.use(bodyParser.urlencoded({
 //  extended: true
