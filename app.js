@@ -106,9 +106,11 @@ function productById(productId){
 
 function productsByCategoryId(categoryId, per_page = 5){
 	var data = {category: categoryId, per_page: per_page}
+	var products = []
 	console.log('http://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data))
 	request.get('http://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data), function(err, response, body) {
-        if (!err && response.statusCode == 200) {
+				console.log(err)
+				if (!err && response.statusCode == 200) {
             var products = JSON.parse(body);
 						console.log(products);
 						return products;
