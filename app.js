@@ -118,9 +118,7 @@ function productById(productId){
 
 function productsByCategoryId(categoryId, per_page = 5){
 	var data = {category: categoryId, per_page: per_page}
-	var products = []
-	console.log('https://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data))
-	return request.get('https://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data))
+	return fetch('https://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data)).then((response) => response.json())
 }
 
 
@@ -428,8 +426,8 @@ function getShowJamPostBack(userId){
 		var elements = []
 		var productsReq = productsByCategoryId(categoryId,5);
 
-		productsReq.then(function(result) {
-			var products = JSON.parse(result);
+		productsReq.then(function(products) {
+			//var products = JSON.parse(result);
 			products.map(function(product) {
 				console.log(product);
 				var newElement = {
