@@ -2,81 +2,15 @@
 'use strict'
 
 const express = require('express')
+const jsonfile = require('jsonfile')
 const bodyParser = require('body-parser')
 const request = require('request')
 const http = require('http')
-const MBot = require('messenger-bot')
 const Config = require('./const.js');
+const querystring =  require('querystring');
 
 let FBBotFramework = require('fb-bot-framework');
-/*
-let mbot = new MBot({
-  token: Config.FB_PAGE_TOKEN,
-  verify: Config.FB_VERIFY_TOKEN,
-  app_secret: Config.FB_APP_SECRECT
-})
 
-
-mbot.on('error', (err) => {
-  console.log(err.message)
-})
-
-
-mbot.setGetStartedButton([{"payload":"GET_STARTED"}]);
-
-mbot.on('postback', (payload, reply, actions) => {
-	let postback = payload.postback;
-	console.log(postback);
-	
-	if (payload.postback.payload == "GET_STARTED") {
-        getStarted(payload.sender.id);
-    }
-	
-	if (postback.payload == "FEEDBACK_AND_HELP"){
-		reply({ text: 'Khong giup thi sao!'}, (err, info) => {})
-	}
-	
-	if (postback.payload == "PRODUCT_LIST"){
-		reply({ text: 'Khong list thi sao!'}, (err, info) => {})
-	}
-	
-	if (postback.payload == "SHARE"){
-		reply({ text: 'Khong share thi sao!'}, (err, info) => {})
-	}
-	
-});
-
-function getStarted(userId){
-
-    // Get started process 
-	Console.log('getstart for userID'+userId);
-}
-
-mbot.on('message', (payload, reply) => {
-  let text = payload.message.text
-  
-  mbot.getProfile(payload.sender.id, (err, profile) => {
-    if (err) throw err
-
-	
-	switch (text){
-		case 'say hi':
-		
-			break;
-		case 'Danh sach san pham':
-		
-			break;
-			
-		case ''
-	}
-    reply({ text }, (err) => {
-      if (err) throw err
-
-      console.log(`Echoed back to ${profile.first_name} ${profile.last_name}: ${text}`)
-    })
-  })
-})
-*/
 
 FBBotFramework.prototype.middleware2 = function(){
 	var bot = this;
@@ -110,7 +44,7 @@ FBBotFramework.prototype.middleware2 = function(){
                     if (event.message && event.message.text) {
                         bot.emit('message', sender, event.message.text);
                     }
-					
+
 					if (event.message && event.message.quick_reply && event.message.quick_reply.payload){
 						bot.emit('quickreply', sender, event.message.quick_reply.payload);
 					}
@@ -146,19 +80,41 @@ let app = express()
 app.use('/webhook', bot.middleware2());
 
 
+//var router = express.Router();
+var jsonCategories = './data/categories.json'
+app.get('/updatedata', function (req, res) {
+	request.get('http://tnt-react.herokuapp.com/api/categories', function(err, response, body) {
+        if (!err && response.statusCode == 200) {
+            var categories = JSON.parse(body);
+						var obj = {categories: categories}
+						jsonfile.writeFile(jsonCategories, obj, function (err) {
+						  console.error(err)
+						})
+            res.json({categories: categories, message: 'hooray! welcome to our api!' });
+        }
+    })
+})
 
-//app.use(bodyParser.urlencoded({
-//  extended: true
-//}))
+function productById(productId){
+	request.get('http://tnt-react.herokuapp.com/api/products/'+productId, function(err, response, body) {
+        if (!err && response.statusCode == 200) {
+            var products = JSON.parse(body);
+						return products;
+        }
+    })
+}
 
-//app.get('/webhook/', (req, res) => {
-//  return mbot._verify(req, res)
-//})
+function productsByCategoryId(categoryId, per_page = 5){
+	var data = {category: id, per_page: per_page}
+	request.get('http://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data), function(err, response, body) {
+        if (!err && response.statusCode == 200) {
+            var products = JSON.parse(body);
+						return products;
+        }
+    })
+}
 
-//app.post('/webhook/', (req, res) => {
- // mbot._handleMessage(req.body)
- // res.end(JSON.stringify({status: 'ok'}))
-//})
+
 
 bot.on('message', function(userId, message){
     bot.sendTextMessage(userId, "Echo Message:" + message);
@@ -169,9 +125,9 @@ bot.on('quickreply', function(userId, payload){
 	if(payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP"){
 		getQuickReplyUsedShopPayload(userId)	;
 	}
-		
+
 	if(payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"){
-		getQuickReplyNewShopPayload(userId)	
+		getQuickReplyNewShopPayload(userId)
 	}
 });
 
@@ -233,7 +189,7 @@ function getQuickReplyUsedShopPayload(userId){
 
 function getQuickReplyNewShopPayload(userId){
 	bot.sendTextMessage(userId, "Đối với quán mới, quý khách có thể cần mua sản phẩm sau?");
-	
+
 	var elements = [
 		{
 			"title": "Máy Pha -  Xay cà phê",
@@ -254,7 +210,7 @@ function getQuickReplyNewShopPayload(userId){
 			"buttons": [
 				{
 					"type": "postback",
-					"title": "Xem sản phẩm",
+					"title": "Xem dụng cụ",
 					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_BARTENDER_TOOL"
 				}
 			]
@@ -266,7 +222,7 @@ function getQuickReplyNewShopPayload(userId){
 			"buttons": [
 				{
 					"type": "postback",
-					"title": "Xem sản phẩm",
+					"title": "Xem nguyên liệu",
 					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_MATERIAL_BARTENDER"
 				}
 			]
@@ -289,55 +245,55 @@ bot.on('postback', function(userId, payload){
     if (payload == "GET_STARTED") {
         getStarted(userId);
     }
-	
+
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COLLECTION"){
 		showShopCollection(userId);
 		console.log("Enter postback show collection");
 	}
-	
+
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_START_SHOPPING"){
 		getStartShoppingPostBack(userId);
 	}
-	
-	
+
+
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHARE_BOT"){
 		getSharePostBack(userId);
 	}
-	
+
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_FEEDBACK_HELP_LEGAL"){
 		getFHLPostBack(userId);
 	}
-	
+
 
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE"){
 		getShowCoffeePostBack(userId);
 	}
-	
+
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_JAM"){
 		getShowJamPostBack(userId);
 	}
-	
+
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_SYRUP"){
 		getShowSyrupPostBack(userId);
 	}
-	
+
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_BARTENDER_TOOL"){
 		getShowBartenderToolPostBack(userId);
 	}
-	
+
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_MAKER"){
 		getShowCoffeeMakerPostBack(userId);
 	}
-	
+
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_MATERIAL_BARTENDER"){
 		getShowBartenderMaterialPostBack(userId);
 	}
-	
-	
+
+
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_BUY_COFFEE_ROBUSTA"){
 		getBuyCoffeeRobustaPostBack(userId);
 	}
-	
+
 
     // Other postback callbacks here
     // ...
@@ -358,8 +314,8 @@ function getStartShoppingPostBack(userId){
         "title":"Quán mới mở",
         "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"
       },
-     
-	  
+
+
     ];
 	bot.sendQuickReplies(userId,text,replies,"REGULAR");
 }
@@ -377,20 +333,20 @@ function getSharePostBack(userId){
 				}
 			]
 		},
-	
+
 	];
 	bot.sendGenericMessage(userId, elements);
 }
 
 
 function getFHLPostBack(userId){
-	
+
 }
 
 
 function getShowCoffeePostBack(userId){
 	bot.sendTextMessage(userId, "Sản phẩm cafe sạch - cafe nguyên chất Coffee Tree");
-	
+
 	var elements = [
 		{
 			"title": "Robusta Nâu thượng hạng",
@@ -440,7 +396,7 @@ function getShowCoffeePostBack(userId){
 				}
 			]
 		},
-		
+
 		{
 			"title": "Coffee tree special",
 			"image_url": "http://coffeetree.vn/ca-phe/image/cache/catalog/ca-phe/coffee-tree-dac-biet-228x228.jpg",
@@ -459,23 +415,23 @@ function getShowCoffeePostBack(userId){
 }
 
 function getShowJamPostBack(userId){
-	
+
 }
 
 function getShowSyrupPostBack(userId){
-	
+
 }
 
 function getShowCoffeeMakerPostBack(userId){
-	
+
 }
 
 function getShowBartenderMaterialPostBack(userId){
-	
+
 }
 
 function getShowBartenderToolPostBack(userId){
-	
+
 }
 
 
@@ -535,7 +491,7 @@ function getBuyCoffeeRobustaPostBack(userId){
 }
 
 function getStarted(userId){
-	
+
 	bot.getUserProfile(userId, function (err, profile) {
 		console.log(profile);
 		var text = "Xin chào "+profile.first_name+" "+profile.last_name+", Cảm ơn quý bạn đã ghé thăm trang Nguyên liệu pha chế, tôi là \"Trợ lý mua sắm\" của bạn. Hãy xem qua hướng dẫn và bắt đầu mua sắm nhé. Cảm ơn ^^!";
@@ -551,10 +507,10 @@ function getStarted(userId){
 				"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_START_SHOPPING"
 			}
 		];
-		// Get started process 
+		// Get started process
 		bot.sendButtonMessage(userId, text, buttons);
 	});
-	
+
 }
 
 
@@ -654,7 +610,7 @@ var menuButtons = [
         "title": "Chia sẻ",
         "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHARE_BOT"
     },
-	
+
 	{
         "type": "postback",
         "title": "Feedback, help & legal",
