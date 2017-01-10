@@ -434,7 +434,7 @@ function getShowJamPostBack(userId){
 		var categoryId = 36;
 		var elements = []
 		var products = productsByCategoryId(categoryId,5);
-
+		console.log(products);
 		products.map(function(product) {
 		  console.log(product);
 			var newElement = {
