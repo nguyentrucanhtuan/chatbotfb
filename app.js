@@ -428,6 +428,7 @@ function getShowJamPostBack(userId){
 
 		productsReq.then(function(products) {
 			//var products = JSON.parse(result);
+			console.log(products);
 			products.map(function(product) {
 				console.log(product);
 				var newElement = {
