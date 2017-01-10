@@ -452,7 +452,7 @@ function getShowJamPostBack(userId){
 				elements.push(newElement)
 			});
 			bot.sendGenericMessage(userId, elements);
-		}
+		})
 
 }
 
