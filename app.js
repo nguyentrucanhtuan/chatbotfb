@@ -8,6 +8,8 @@ const request = require('request')
 const http = require('http')
 const Config = require('./const.js');
 const querystring =  require('querystring');
+var fetch = require('node-fetch');
+
 
 let FBBotFramework = require('fb-bot-framework');
 
