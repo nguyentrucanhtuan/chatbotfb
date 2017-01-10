@@ -415,7 +415,32 @@ function getShowCoffeePostBack(userId){
 }
 
 function getShowJamPostBack(userId){
+		var categoryId = 36;
+		var elements = []
+		var products = productsByCategoryId(categoryId,5);
 
+		products.map(function(product) {
+		  console.log(product);
+			var newElement = {
+				"title": product.name,
+				"image_url": product.images[0].src,
+				"subtitle": product.description,
+				"buttons": [
+					{
+						"type": "postback",
+						"title": "Xem Sản phẩm",
+						"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_ROBUSTA"
+					},
+					{
+						"type": "web_url",
+						"title": "Mua Sản phẩm",
+						"url": "http://tnt-react.herokuapp.com/products/"+product.id
+					}
+				]
+			}
+			elements.push(newElement)
+		});
+		bot.sendGenericMessage(userId, elements);
 }
 
 function getShowSyrupPostBack(userId){
