@@ -120,14 +120,7 @@ function productsByCategoryId(categoryId, per_page = 5){
 	var data = {category: categoryId, per_page: per_page}
 	var products = []
 	console.log('https://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data))
-	request.get('https://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data), function(err, response, body) {
-				console.log(err)
-				if (!err && response.statusCode == 200) {
-            products = JSON.parse(body);
-						console.log(products);
-						return products;
-        }
-    })
+	return request.get('https://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data))
 }
 
 
@@ -433,8 +426,10 @@ function getShowCoffeePostBack(userId){
 function getShowJamPostBack(userId){
 		var categoryId = 36;
 		var elements = []
-		var products = productsByCategoryId(categoryId,5);
-		console.log(products);
+		var products= []
+		var productsReq = productsByCategoryId(categoryId,5);
+
+		console.log(productsReq);
 		products.map(function(product) {
 		  console.log(product);
 			var newElement = {
