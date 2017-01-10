@@ -97,7 +97,7 @@ app.get('/updatedata', function (req, res) {
 
 
 app.get('/products',function (req, res){
-	request.get('https://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data), function(err, response, body) {
+	request.get('https://tnt-react.herokuapp.com/api/products?'+querystring.stringify(req.query), function(err, response, body) {
 				console.log(err)
 				if (!err && response.statusCode == 200) {
             var products = JSON.parse(body);
