@@ -95,6 +95,18 @@ app.get('/updatedata', function (req, res) {
     })
 })
 
+
+app.get('products',function (req, res){
+	request.get('https://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data), function(err, response, body) {
+				console.log(err)
+				if (!err && response.statusCode == 200) {
+            var products = JSON.parse(body);
+						console.log(products);
+						res.json({products: products });
+        }
+    })
+})
+
 function productById(productId){
 	request.get('http://tnt-react.herokuapp.com/api/products/'+productId, function(err, response, body) {
         if (!err && response.statusCode == 200) {
@@ -107,8 +119,8 @@ function productById(productId){
 function productsByCategoryId(categoryId, per_page = 5){
 	var data = {category: categoryId, per_page: per_page}
 	var products = []
-	console.log('http://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data))
-	request.get('http://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data), function(err, response, body) {
+	console.log('https://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data))
+	request.get('https://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data), function(err, response, body) {
 				console.log(err)
 				if (!err && response.statusCode == 200) {
             var products = JSON.parse(body);
