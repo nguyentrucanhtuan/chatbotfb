@@ -8,7 +8,7 @@ const request = require('request')
 const http = require('http')
 const Config = require('./const.js');
 const querystring =  require('querystring');
-var fetch = require('node-fetch');
+const fetch = require('node-fetch');
 
 
 let FBBotFramework = require('fb-bot-framework');
@@ -175,7 +175,10 @@ function getQuickReplyUsedShopPayload(userId){
 				{
 					"type": "postback",
 					"title": "Chọn mua Syrup",
-					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_SYRUP"
+					"payload": {
+	          id: 'suggest',
+	          category: 'syrup-pha-che'
+	        }
 				}
 			]
 		},
@@ -254,6 +257,7 @@ bot.on('postback', function(userId, payload){
     if (payload == "GET_STARTED") {
         getStarted(userId);
     }
+		console.log(payload)
 
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COLLECTION"){
 		showShopCollection(userId);
