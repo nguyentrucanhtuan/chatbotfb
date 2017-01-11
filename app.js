@@ -211,7 +211,10 @@ function getQuickReplyNewShopPayload(userId){
 				{
 					"type": "postback",
 					"title": "Xem Sản phẩm",
-					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_MAKER"
+					"payload": {
+	          id: 'suggest',
+	          category: 'may-pha-cafe'
+	        }
 				}
 			]
 		},
