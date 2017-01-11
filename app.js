@@ -175,10 +175,7 @@ function getQuickReplyUsedShopPayload(userId){
 				{
 					"type": "postback",
 					"title": "Chọn mua Syrup",
-					"payload": {
-	          id: 'suggest',
-	          category: 'syrup-pha-che'
-	        }
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_SYRUP"
 				}
 			]
 		},
@@ -211,10 +208,7 @@ function getQuickReplyNewShopPayload(userId){
 				{
 					"type": "postback",
 					"title": "Xem Sản phẩm",
-					"payload": {
-	          id: 'suggest',
-	          category: 'may-pha-cafe'
-	        }
+					"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COFFEE_MAKER"
 				}
 			]
 		},
@@ -260,7 +254,6 @@ bot.on('postback', function(userId, payload){
     if (payload == "GET_STARTED") {
         getStarted(userId);
     }
-		console.log(payload)
 
 	if (payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_SHOW_COLLECTION"){
 		showShopCollection(userId);
