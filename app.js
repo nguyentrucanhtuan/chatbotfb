@@ -388,9 +388,9 @@ bot.on('postback', function(userId, payload){
 function getStartShoppingPostBack(userId){
 	var text = "Nguyên liệu pha chế có các sản phẩm theo danh mục saus:";
 	bot.sendTextMessage(userId,text);
-	categories().then(function(categories){
+/*	categories().then(function(categories){
 		var elements = []
-		/*categories.map(function(index,category){
+		categories.map(function(index,category){
 			if(index == 1 || index  == 2 || index == 3){
 			var newElement = {
           "title": category.name,
@@ -418,7 +418,7 @@ function getStartShoppingPostBack(userId){
 		}
 	})*/
 
-	  elements = [
+	  var elements = [
                 {
                     "title": "Classic T-Shirt Collection",
                     "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
@@ -429,7 +429,7 @@ function getStartShoppingPostBack(userId){
                         "messenger_extensions": true,
                         "webview_height_ratio": "tall",
                         "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
-                    },
+                		},
                     "buttons": [
                         {
                             "title": "View",
@@ -507,14 +507,8 @@ function getStartShoppingPostBack(userId){
                         }
                     ]
                 }
-            ],
-             "buttons": [
-                {
-                    "title": "View More",
-                    "type": "postback",
-                    "payload": "payload"
-                }
             ]
+
 	//	console.log(elements)
 		bot.sendGenericMessage(userId, elements);
 	})
