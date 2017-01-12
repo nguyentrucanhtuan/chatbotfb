@@ -173,6 +173,7 @@ bot.on('message', function(userId, message){
 });
 /// Quickreply Payload Handler
 bot.on('quickreply', function(userId, payload){
+	console.log(payload)
 	if(payload == phanloaiquan.dahoatdong.payload){
 		getQuickReplyUsedShopPayload(userId)	;
 	}
@@ -388,12 +389,12 @@ function getStartShoppingPostBack(userId){
 	  {
         "content_type":"text",
         "title":"Quán đang hoạt động",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP"
+        "payload": phanloaiquan.dahoatdong.payload
       },
 	  {
         "content_type":"text",
         "title":"Quán mới mở",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"
+        "payload": phanloaiquan.moihoatdong.payload
       },
 
 
