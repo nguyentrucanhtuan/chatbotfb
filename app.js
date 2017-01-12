@@ -386,23 +386,39 @@ bot.on('postback', function(userId, payload){
 
 
 function getStartShoppingPostBack(userId){
-	var text = "Quý khách cần tìm sản phẩm cho:";
-	var replies = [
-	  {
-        "content_type":"text",
-        "title":"Quán đang hoạt động",
-        "payload": phanloaiquan.dahoatdong.payload
-      },
-	  {
-        "content_type":"text",
-        "title":"Quán mới mở",
-        "payload": phanloaiquan.moihoatdong.payload
-      },
-
-
-    ];
-	console.log(replies);
-	bot.sendQuickReplies(userId,text,replies,"REGULAR");
+	var text = "Nguyên liệu pha chế có các sản phẩm theo danh mục saus:";
+	bot.sendTextMessage(userId,text);
+	categories().then(function(categories){
+		console.log(categories)
+		var elements = []
+		categories.map(function(category){
+			var newElement = {
+          "title": category.name,
+          "image_url": category.image.src,
+          "subtitle": category.description,
+          "default_action": {
+              "type": "web_url",
+              "url": "tnt-react.herokuapp.com/categories/"+category.id,
+              "messenger_extensions": true,
+              "webview_height_ratio": "tall",
+              //"fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+          },
+          "buttons": [
+                {
+                    "title": "View",
+                    "type": "web_url",
+                    "url": "tnt-react.herokuapp.com/categories/"+category.id,
+                    "messenger_extensions": true,
+                    "webview_height_ratio": "tall",
+                    //"fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                }
+          ]
+      };
+			elements.push(newElement);
+		})
+		console.log(elements)
+		bot.sendListMessage(userId, elements);
+	})
 }
 
 function getSharePostBack(userId){
