@@ -417,7 +417,7 @@ function getStartShoppingPostBack(userId){
 			elements.push(newElement);
 		})
 		console.log(elements)
-		bot.sendListMessage(userId, elements);
+		bot.sendGenericMessage(userId, elements);
 	})
 }
 
