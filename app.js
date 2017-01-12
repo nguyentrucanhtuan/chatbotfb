@@ -389,9 +389,9 @@ function getStartShoppingPostBack(userId){
 	var text = "Nguyên liệu pha chế có các sản phẩm theo danh mục saus:";
 	bot.sendTextMessage(userId,text);
 	categories().then(function(categories){
-		console.log(categories)
 		var elements = []
-		categories.map(function(category){
+		categories.map(function(index,category){
+			if(index == 1 || index  == 2 || index == 3){
 			var newElement = {
           "title": category.name,
           "image_url": category.image.src,
@@ -415,6 +415,7 @@ function getStartShoppingPostBack(userId){
           ]
       };
 			elements.push(newElement);
+		}
 		})
 		console.log(elements)
 		bot.sendGenericMessage(userId, elements);
