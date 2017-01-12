@@ -190,8 +190,8 @@ if (pageId) {
 				botly.createPostbackButton('View Website', 'view_website'),
 				botly.createPostbackButton('Top selling', 'show_top_selling')
 		]
-    botly.setPersistentMenu({pageId: pageId, buttons: [botly.createPostbackButton('reset', 'reset_me')]}, function (err, body) {
-        console.log("persistent menu cb:", err, body);
+    botly.setPersistentMenu({pageId: pageId, buttons: buttons}, function (err, body) {
+        //console.log("persistent menu cb:", err, body);
     })
 }
 
