@@ -510,7 +510,7 @@ function getStartShoppingPostBack(userId){
             ]
 
 	//	console.log(elements)
-		bot.sendGenericMessage(userId, elements);
+		bot.sendListMessage(userId, elements);
 
 }
 
