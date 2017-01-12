@@ -177,6 +177,11 @@ if (pageId) {
     botly.setGetStarted({pageId: pageId, payload: 'GET_STARTED_CLICKED'}, function (err, body) {
         console.log("welcome cb:", err, body);
     });
+		var buttons = [
+				botly.createPostbackButton('Bắt đầu mua sắm', 'start_shopping'),
+				botly.createPostbackButton('View Website', 'view_website'),
+				botly.createPostbackButton('Top selling', 'show_top_selling')
+		]
     botly.setPersistentMenu({pageId: pageId, buttons: [botly.createPostbackButton('reset', 'reset_me')]}, function (err, body) {
         console.log("persistent menu cb:", err, body);
     })
