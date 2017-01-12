@@ -399,6 +399,7 @@ function getStartShoppingPostBack(userId){
 
 
     ];
+	console.log(replies);
 	bot.sendQuickReplies(userId,text,replies,"REGULAR");
 }
 
