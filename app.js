@@ -8,6 +8,7 @@ const http = require('http');
 
 const port = process.env.PORT || 5000;
 const Config = require('./const.js');
+const actions = require('./actions.js')
 const Botly = require("botly");
 const botly = new Botly({
     verifyToken: Config.FB_VERIFY_TOKEN,
@@ -157,15 +158,22 @@ botly.on('message', (sender, message, data) => {
 });
 
 botly.on('postback', (sender, message, postback) => {
-    console.log("postback:", sender, message, postback);
+		switch postback.payload {
+			case 'start_shopping':
+				ations.startShopping(sender)
+				break;
+
+
+		}
+    //console.log("postback:", sender, message, postback);
 });
 
 botly.on('delivery', (sender, message, mids) => {
-    console.log("delivery:", sender, message, mids);
+    //console.log("delivery:", sender, message, mids);
 });
 
 botly.on('optin', (sender, message, optin) => {
-    console.log("optin:", sender, message, optin);
+    //console.log("optin:", sender, message, optin);
 });
 
 botly.on('error', (ex) => {
