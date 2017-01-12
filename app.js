@@ -184,7 +184,7 @@ if (pageId) {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use('/fb', botly.router());
+app.use('/webhook', botly.router());
 app.set('port', port);
 
 
