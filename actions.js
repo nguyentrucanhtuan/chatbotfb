@@ -4,6 +4,7 @@ function actions() {
 }
 
 actions.prototype.sendCategoriesList = function(sender){
+  console.log(sender)
   let element = botly.createListElement({
       title: "Classic T-Shirt Collection",
       image_url: "https://peterssendreceiveapp.ngrok.io/img/collection.png",

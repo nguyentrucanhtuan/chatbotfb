@@ -158,6 +158,7 @@ botly.on('message', (sender, message, data) => {
 });
 
 botly.on('postback', (sender, message, postback) => {
+	 console.log(postback);
 		switch (postback.payload) {
 			case 'start_shopping':
 				ations.startShopping(sender)
