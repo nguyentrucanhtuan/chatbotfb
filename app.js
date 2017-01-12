@@ -11,7 +11,30 @@ const querystring =  require('querystring');
 const fetch = require('node-fetch');
 
 
+var postBacksConstant = {
+	Category : 'POSTBACK_CATEGORY_',
+	Product : 'POSTBACK_PRODUCT_',
+	BuyProduct :  'POSTBACK_BUY_PRODUCT_',
+	ViewProduct : 'POSTBACK_VIEW_PRODUCT_',
+	BestSell : 'POSTBACK_BEST_SELL_PRODUCT',
+
+
+}
+
+var phanloaiquan = {
+	dahoatdong : {
+		categories : [],
+		payload : 'SAN_PHAM_QUAN_HOAT_DONG'
+	},
+	moihoatdong : {
+		categories : [],
+		payload : 'SAN_PHAM_QUAN_MOI_MO'
+	}
+}
+
 let FBBotFramework = require('fb-bot-framework');
+
+
 
 
 FBBotFramework.prototype.middleware2 = function(){
@@ -68,6 +91,20 @@ FBBotFramework.prototype.middleware2 = function(){
     };
 }
 
+
+FBBotFramework.prototype.sendListMessage = function (recipient, elements, notificationType, cb) {
+	var messageData = {
+        attachment: {
+            type: "template",
+            payload: {
+                template_type: "list",
+                elements: elements
+            }
+        }
+    };
+
+    this.send(recipient, messageData, notificationType, cb);
+}
 let bot = new FBBotFramework({
     page_token: Config.FB_PAGE_TOKEN,
     verify_token: Config.FB_VERIFY_TOKEN
@@ -84,6 +121,12 @@ app.use('/webhook', bot.middleware2());
 
 //var router = express.Router();
 var jsonCategories = './data/categories.json'
+
+function categories(){
+	return fetch('https://tnt-react.herokuapp.com/api/categories').then((response) => response.json())
+}
+
+
 app.get('/updatedata', function (req, res) {
 	request.get('http://tnt-react.herokuapp.com/api/categories', function(err, response, body) {
         if (!err && response.statusCode == 200) {
@@ -130,19 +173,48 @@ bot.on('message', function(userId, message){
 });
 /// Quickreply Payload Handler
 bot.on('quickreply', function(userId, payload){
-	console.log(payload);
-	if(payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_USED_SHOP"){
+	if(payload == phanloaiquan.dahoatdong.payload){
 		getQuickReplyUsedShopPayload(userId)	;
 	}
 
-	if(payload == "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_NEW_SHOP"){
+	if(payload == phanloaiquan.moihoatdong.payload){
 		getQuickReplyNewShopPayload(userId)
 	}
 });
 
 function getQuickReplyUsedShopPayload(userId){
 	bot.sendTextMessage(userId, "Đối với quán đã hoạt động, quý khách có thể cần mua sản phẩm sau?");
-	var elements = [
+
+	categories().then(function(categories){
+		var elements = []
+		categories.map(function(category){
+			var newElement = {
+          "title": category.name,
+          "image_url": category.image.src,
+          "subtitle": category.description,
+          "default_action": {
+              "type": "web_url",
+              "url": "tnt-react.herokuapp.com/categories/"+category.id,
+              "messenger_extensions": true,
+              "webview_height_ratio": "tall",
+              //"fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+          },
+          "buttons": [
+                {
+                    "title": "View",
+                    "type": "web_url",
+                    "url": "tnt-react.herokuapp.com/categories/"+category.id,
+                    "messenger_extensions": true,
+                    "webview_height_ratio": "tall",
+                    //"fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                }
+          ]
+      };
+			elements.push(newElement);
+		})
+		bot.sendListMessage(userId, elements);
+	})
+	/*var elements = [
 		{
 			"title": "Cafe nguyên chất",
 			"image_url": "http://nguyenlieuphache.com.vn/upload/tra/coffee-tree-dac-biet.jpg",
@@ -192,8 +264,8 @@ function getQuickReplyUsedShopPayload(userId){
 			]
 		},
 	];
-
-	bot.sendGenericMessage(userId, elements);
+*/
+	//bot.sendGenericMessage(userId, elements);
 }
 
 function getQuickReplyNewShopPayload(userId){
