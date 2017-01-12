@@ -33,4 +33,4 @@ actions.prototype.sendCategoriesList = function(sender){
 
 
 
-export default actions;
+module.exports = actions;

@@ -12,4 +12,4 @@ WooAPI.prototype.productsByCategoryId = function(category, per_page = 5){
   return fetch('https://tnt-react.herokuapp.com/api/products?'+querystring.stringify(data)).then((response) => response.json())
 }
 
-export default WooAPI;
+module.exports = WooAPI;
