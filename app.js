@@ -511,7 +511,7 @@ function getStartShoppingPostBack(userId){
 
 	//	console.log(elements)
 		bot.sendGenericMessage(userId, elements);
-	})
+
 }
 
 function getSharePostBack(userId){
