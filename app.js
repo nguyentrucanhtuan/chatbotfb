@@ -175,7 +175,7 @@ bot.on('message', function(userId, message){
 bot.on('quickreply', function(userId, payload){
 	console.log(payload)
 	if(payload == phanloaiquan.dahoatdong.payload){
-		getQuickReplyUsedShopPayload(userId)	;
+		getQuickReplyUsedShopPayload(userId);
 	}
 
 	if(payload == phanloaiquan.moihoatdong.payload){
@@ -187,6 +187,7 @@ function getQuickReplyUsedShopPayload(userId){
 	bot.sendTextMessage(userId, "Đối với quán đã hoạt động, quý khách có thể cần mua sản phẩm sau?");
 
 	categories().then(function(categories){
+		console.log(categories)
 		var elements = []
 		categories.map(function(category){
 			var newElement = {
@@ -213,6 +214,7 @@ function getQuickReplyUsedShopPayload(userId){
       };
 			elements.push(newElement);
 		})
+		console.log(elements)
 		bot.sendListMessage(userId, elements);
 	})
 	/*var elements = [
